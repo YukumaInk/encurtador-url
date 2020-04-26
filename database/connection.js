@@ -19,5 +19,5 @@ const Url = sequelize.define('url', {
 });
 
 Url.sync();
-
+//
 module.exports = Url;

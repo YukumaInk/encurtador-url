@@ -29,7 +29,7 @@ routes.get('/', async function(req,res){
     const urlList = await Url.findAll()
     return res.json(urlList);
 });
-
+//
 routes.get('/:urlName', async (req, res) => {
     const urlName = await Url.findOne({where: {name: req.params.urlName}});
     if(urlName == null) return res.sendStatus(404);
