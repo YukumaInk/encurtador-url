@@ -4,42 +4,47 @@ const urlDb = new Sequelize('database', 'user', 'password', {
     host: 'localhost',
     dialect: 'sqlite',
     logging: false,
-    storage: 'database/urls.sqlite',
+    storage: 'src/database/storage.sqlite',
 });
 
 const userDb = new Sequelize('database', 'user', 'password', {
     host: 'localhost',
     dialect: 'sqlite',
     logging: false,
-    storage: 'database/users.sqlite',
+    storage: 'src/database/storage.sqlite',
 });
 
 const Url = urlDb.define('url', {
     originalUrl: Sequelize.STRING,
     name: {
         type: Sequelize.STRING,
-        unique : true,
+        unique: true,
     },
     tinyUrl: Sequelize.STRING,
     numberOfVisits: Sequelize.INTEGER,
+    limitOfVisits: {
+        type: Sequelize.INTEGER,
+        defaultValue: 10,
+    },
+    imageUrl: Sequelize.STRING,
     userId: Sequelize.STRING,
-    createdAt: Sequelize.DATE,
+    category: Sequelize.STRING,
+    timeLimit: Sequelize.INTEGER,
 });
 
-const User = userDb.define('user',{
+const User = userDb.define('user', {
     id: {
-        primaryKey:true,
+        primaryKey: true,
         type: Sequelize.STRING,
     },
     username: {
         type: Sequelize.STRING,
         unique: true,
     },
-    password: Sequelize.STRING,
     email: Sequelize.STRING,
 });
 
 Url.sync();
 User.sync();
 //
-module.exports = {Url, User};
+module.exports = { Url, User };
