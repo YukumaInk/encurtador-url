@@ -39,7 +39,7 @@ __POST__
 body em JSON:
 - originalUrl(Url que vai ser encurtada)
 - name(path/nome)
-- limit(numero inteiro - limite de visitas)
+- limit(número inteiro - limite de visitas)
 - category
 - timeLimit(tempo para expirar a Url em minutos - 0 para fazer uma Url que não expira com o tempo)
 
@@ -62,11 +62,15 @@ _Erros_:
 - (404) path/name já existente
 - (400) problema nos dados de entrada
 
+_Pode criar Url sem nome/path -> será criado um nome/path com 8 caracteres aleatórios_
+
+
 Pode criar Url sem usuário:
 __POST__
 >user/nouser
 
 mas timeLimit = 5 e limit = 10 por padrão
+
 
 ### Deletar Url
 
