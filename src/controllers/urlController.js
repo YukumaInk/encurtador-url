@@ -54,7 +54,7 @@ module.exports = {
     },
     async deleteUrl(req,res){
         const urlName = await db.Url.findOne({ where: { name: req.params.urlName } });
-        const userId = req.body.userId;
+        const userId = req.params.userId;
         if (urlName == null) return res.sendStatus(404);//nao encontrado
         else if(urlName.userId!=userId) return res.sendStatus(401);//nao autorizado
         else {

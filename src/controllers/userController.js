@@ -29,8 +29,7 @@ module.exports ={
     async listByCategory(req,res){
         const userId = req.params.userId;
         const category = req.params.category;
-        const user = await db.User.findOne({where:{id:userId}});
-        const list = await db.Url.findAll({where:{userId: user.id, category:category}});
+        const list = await db.Url.findAll({where:{userId: userId, category:category}});
         res.json(list);
     },
 }

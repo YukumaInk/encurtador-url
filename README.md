@@ -55,15 +55,31 @@ _Erros_:
 ### Deletar Url
 
 __DELETE__
->/delete/:urlName
-:urlname -> nome/path da Url
+>/delete/:userId/:urlName
 
-body em JSON:
-- userId
+:urlname -> nome/path da Url
 
 _Erros_:
 - (404) path/name nao encontrado
 - (401) userId nao autorizada
 
+### Listar Url
 
+__GET__
+>/user/:userId
 
+lista todas Urls criadas pelo usuario
+
+### Listar Url por categoria
+
+__GET__
+>/user/:userId/:category
+
+lista todas as Urls criadas pelo usuario por categoria
+
+### Link Encurtado
+
+__GET__
+>/:urlName
+
+redireciona para a Url original
