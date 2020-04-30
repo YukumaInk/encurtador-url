@@ -7,7 +7,7 @@ const routes = express.Router();
 
 routes.get('/:urlName', urlController.redirectUrl);
 routes.post('/user/:userId', urlController.create);
-routes.delete('/delete/:userId/:urlName', urlController.delete);
+routes.delete('/delete/:urlName', urlController.deleteUrl);
 
 routes.post('/create/user', userController.create);
 routes.get('/user/:userId', userController.list);

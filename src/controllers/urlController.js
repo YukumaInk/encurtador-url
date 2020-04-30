@@ -52,14 +52,14 @@ module.exports = {
         res.redirect(urlName.originalUrl);
         if (urlName.numberOfVisits > parseInt(urlName.limitOfVisits)) db.Url.destroy({ where: { name: urlName.name } });
     },
-    async delete(req,res){
+    async deleteUrl(req,res){
         const urlName = await db.Url.findOne({ where: { name: req.params.urlName } });
-        const user = await db.User.findOne({ where: { id: req.params.userId } });
-        if (urlName == null || user==null) return res.sendStatus(404);//nao encontrado
-        else if(urlName.userId!=user.id) return res.sendStatus(401);//nao autorizado
+        const userId = req.body.userId;
+        if (urlName == null) return res.sendStatus(404);//nao encontrado
+        else if(urlName.userId!=userId) return res.sendStatus(401);//nao autorizado
         else {
             db.Url.destroy({ where: { name: urlName.name } });
             return res.sendStatus(200);
         }
-    }
+    },
 };
