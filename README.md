@@ -5,6 +5,15 @@ Para iniciar:
 
 Hospedado na porta: 3434
 
+## Bibliotecas
+- axios
+- body-parser
+- cors
+- express
+- nodemon
+- sequelize
+- sqlite3
+
 ## Requisições
 
 ### Criar user
