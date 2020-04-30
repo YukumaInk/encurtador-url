@@ -12,7 +12,7 @@ module.exports ={
             });
             return res.json(user.id);
         } catch (e) {
-            if (e.name === 'SequelizeUniqueConstraintError') {
+            if (e.username === 'SequelizeUniqueConstraintError') {
                 return res.sendStatus(404);
             }
             return res.sendStatus(400);
