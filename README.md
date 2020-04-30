@@ -65,7 +65,8 @@ _Erros_:
 _Pode criar Url sem nome/path -> será criado um nome/path com 8 caracteres aleatórios_
 
 
-Pode criar Url sem usuário:
+_Pode criar Url sem usuário:_
+
 __POST__
 >user/nouser
 
