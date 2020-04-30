@@ -20,7 +20,6 @@ module.exports = {
         }
         try {
             const url = await db.Url.create({
-                id: crypto.randomBytes(6).toString('HEX'),
                 originalUrl: originalUrl,
                 name: name,
                 tinyUrl: `http://localhost:3434/${name}`,
@@ -37,7 +36,7 @@ module.exports = {
                 }
                 setTimeout(deleteByTime, timeLimit*60000, name);
             }
-            return res.json(await db.Url.findAll({ where: { name: name } }));
+            return res.json(await db.Url.findOne({ where: { name: name } }));
         } catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {
                 return res.sendStatus(404);//mesmo nome
@@ -48,9 +47,9 @@ module.exports = {
     async redirectUrl(req,res){
         const urlName = await db.Url.findOne({ where: { name: req.params.urlName } });
         if (urlName == null) return res.sendStatus(404);
-        db.Url.update({ numberOfVisits: urlName.numberOfVisits + 1 }, { where: { name: urlName.name } });
+        if (parseInt(urlName.numberOfVisits) == parseInt(urlName.limitOfVisits)-1) await db.Url.destroy({ where: { name: urlName.name } });
+        await db.Url.update({ numberOfVisits: urlName.numberOfVisits + 1 }, { where: { name: urlName.name } });
         res.redirect(urlName.originalUrl);
-        if (urlName.numberOfVisits > parseInt(urlName.limitOfVisits)) db.Url.destroy({ where: { name: urlName.name } });
     },
     async deleteUrl(req,res){
         const urlName = await db.Url.findOne({ where: { name: req.params.urlName } });

@@ -46,5 +46,5 @@ const User = userDb.define('user', {
 
 Url.sync();
 User.sync();
-//
+
 module.exports = { Url, User };
