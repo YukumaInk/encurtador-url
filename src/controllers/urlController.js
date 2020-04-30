@@ -19,7 +19,7 @@ module.exports = {
         let isValidUrl, imageUrl;
         try{
             isValidUrl = await axios.get(`${originalUrl}`);
-            imageUrl = await axios.get(`https://www2png.com/api/capture/4fb4218a-b79f-41a8-818c-0c316697508d?url=${originalUrl}`);
+            imageUrl = await axios.get(`https://www2png.com/api/capture/<api_key>?url=${originalUrl}`);
         } catch(e){
             return res.sendStatus(406);//url invalida
         }
