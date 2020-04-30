@@ -10,7 +10,12 @@ module.exports = {
             limit = 10;
             timeLimit = 5;
         }
-        name = name.toLowerCase();
+        if(name=="" || name ==" " || name == null){
+            name = crypto.randomBytes(4).toString('HEX');
+        }
+        else {
+            name = name.toLowerCase();
+        }
         let isValidUrl, imageUrl;
         try{
             isValidUrl = await axios.get(`${originalUrl}`);
